@@ -46,8 +46,6 @@ class _BreadcrumbsView extends StatelessWidget {
                 ),
             onNavigate: (path) => _navigate(context, path),
             divider: ' > ',
-            capitalize: true,
-            pathConnector: '<',
             textStyle: const TextStyle(
               color: Colors.red,
             ),

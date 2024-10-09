@@ -13,8 +13,8 @@ void main() {
     late String actual;
 
     String myExpected = 'my';
-    String testExpected = 'my/test';
-    String pathExpected = 'my/test/path';
+    String testExpected = 'test';
+    String pathExpected = 'path';
 
     final testWidget = MaterialApp(
       home: Breadcrumbs(
@@ -63,8 +63,6 @@ void main() {
             ),
         onNavigate: (_) {},
         divider: ' > ',
-        capitalize: true,
-        pathConnector: '<',
         textStyle: const TextStyle(
           fontFamily: 'Roboto',
           color: Colors.red,

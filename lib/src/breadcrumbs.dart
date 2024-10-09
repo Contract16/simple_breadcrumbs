@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_breadcrumbs/src/data.dart';
 
 class Breadcrumbs extends StatelessWidget {
-  final bool capitalize;
   final Iterable<Breadcrumb> breadcrumbs;
   final String divider;
-  final String pathConnector;
   final Function(String path)? onNavigate;
   final TextStyle? textStyle;
   final TextStyle? selectedStyle;
@@ -20,8 +18,6 @@ class Breadcrumbs extends StatelessWidget {
     super.key,
     required this.breadcrumbs,
     this.divider = ' ... ',
-    this.pathConnector = '/',
-    this.capitalize = false,
     this.onNavigate,
     this.textStyle,
     this.selectedStyle,
@@ -43,9 +39,9 @@ class Breadcrumbs extends StatelessWidget {
               .mapIndexed(
                 (index, bc) => [
                   TextSpan(
-                    text: capitalize ? bc.label.capitalize : bc.label,
+                    text: bc.label,
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => onNavigate?.call(_fullPath(index)),
+                      ..onTap = () => onNavigate?.call(bc.path),
                     style: index == breadcrumbs.length - 1
                         ? selectedStyle ?? textStyle
                         : textStyle,
@@ -53,7 +49,7 @@ class Breadcrumbs extends StatelessWidget {
                   if (index < breadcrumbs.length - 1)
                     TextSpan(
                       text: divider,
-                      style: dividerStyle,
+                      style: dividerStyle ?? textStyle,
                     ),
                 ],
               )
@@ -62,12 +58,4 @@ class Breadcrumbs extends StatelessWidget {
       ),
     );
   }
-
-  String _fullPath(int index) =>
-      breadcrumbs.take(index + 1).map((b) => b.path).join(pathConnector);
-}
-
-extension on String {
-  String get capitalize =>
-      '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
 }
