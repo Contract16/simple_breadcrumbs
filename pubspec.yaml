@@ -1,7 +1,9 @@
 name: simple_breadcrumbs
 description: "A small widget to implement breadcrumbs into a flutter app"
 version: 0.0.1
-homepage: https://www.contract16.com
+homepage: https://www.lpickford.dev
+repository: https://github.com/Contract16/simple_breadcrumbs
+issue_tracker: https://github.com/Contract16/simple_breadcrumbs/issues
 
 environment:
   sdk: '>=3.4.4 <4.0.0'
